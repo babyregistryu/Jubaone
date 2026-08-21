@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>JubaOne Admin</title>
+<link rel="stylesheet" href="admin-styles.css" />
+</head>
+<body>
+  <header class="admin-header"><div class="wrap"><h1>JubaOne — Admin</h1></div></header>
+  <main class="wrap admin-grid">
+    <section class="admin-col" id="auth-col">
+      <h2>Admin Login</h2>
+      <div id="auth-ui">
+        <div id="sign-in-form">
+          <input id="email" placeholder="email" />
+          <input id="password" placeholder="password" type="password" />
+          <button id="btn-signin">Sign In</button>
+        </div>
+        <div id="user-info" style="display:none">
+          <p id="user-email"></p>
+          <button id="btn-signout">Sign Out</button>
+        </div>
+      </div>
+
+      <h3>Firebase Config</h3>
+      <p>Paste your Firebase config object here and click Save. (See README)</p>
+      <textarea id="firebase-config" placeholder='{"apiKey":"...","authDomain":"..."}' rows="6"></textarea>
+      <button id="btn-save-config">Save Config</button>
+    </section>
+
+    <section class="admin-col" id="controls-col">
+      <h2>Controls</h2>
+      <button id="btn-load-seed">Load seed data to Firestore (optional)</button>
+      <h3>Articles</h3>
+      <div id="articles-list"></div>
+      <button id="btn-new-article">New Article</button>
+      <div id="article-editor" style="display:none"></div>
+    </section>
+
+    <section class="admin-col" id="settings-col">
+      <h2>Site Settings</h2>
+      <label>Top banner text: <input id="top-banner" placeholder="Banner text" /></label>
+      <label>Footer text: <input id="footer-text" placeholder="Footer text" /></label>
+      <button id="btn-save-settings">Save Settings</button>
+
+      <h3>Legal Pages</h3>
+      <select id="legal-select">
+        <option value="privacy">Privacy Policy</option>
+        <option value="terms">Terms</option>
+        <option value="cookie">Cookie Policy</option>
+        <option value="dmca">DMCA</option>
+        <option value="about">About</option>
+      </select>
+      <button id="btn-edit-legal">Edit</button>
+      <div id="legal-editor" style="display:none"></div>
+
+      <h3>Authors & Roles</h3>
+      <div id="authors-list"></div>
+      <button id="btn-add-author">Add Author</button>
+    </section>
+  </main>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+
+  <script src="admin.js"></script>
+</body>
+</html>

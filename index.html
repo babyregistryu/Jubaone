@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>JubaOne — South Sudan Heritage & History</title>
+  <meta name="description" content="JubaOne — history, cultures, beliefs, riddles, great men, warriors, prophets, lifestyles, tribes and languages of South Sudan." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <h1 id="site-title">JubaOne</h1>
+      <nav id="main-nav">
+        <a href="index.html">Home</a>
+        <a href="categories.html">Categories</a>
+        <a href="about.html">About</a>
+        <a href="legal/privacy.html">Privacy</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="hero">
+      <h2>Exploring South Sudan — history, people, and living traditions</h2>
+      <p id="hero-sub">A cultural and historical resource dedicated to the peoples and heritage of South Sudan.</p>
+    </section>
+
+    <section id="top-features" class="grid">
+      <div class="col">
+        <h3>Trending Now</h3>
+        <ul id="trending-list"></ul>
+      </div>
+      <div class="col">
+        <h3>Popular</h3>
+        <ul id="popular-list"></ul>
+      </div>
+      <div class="col">
+        <h3>Recent</h3>
+        <ul id="recent-list"></ul>
+      </div>
+    </section>
+
+    <section id="main-content">
+      <h2>Featured Articles</h2>
+      <div id="articles" class="article-list"></div>
+    </section>
+
+    <aside id="sidebar">
+      <div class="widget">
+        <h4>Categories</h4>
+        <ul id="category-list"></ul>
+      </div>
+
+      <div class="widget">
+        <h4>Riddles and Proverbs</h4>
+        <div id="riddle-widget"></div>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div id="footer-banner">Top footer banner text — editable in Admin</div>
+      <p>&copy; <span id="year"></span> JubaOne — All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="data/initial_data.json" type="application/json" id="seed-data"></script>
+  <script src="app.js"></script>
+</body>
+</html>

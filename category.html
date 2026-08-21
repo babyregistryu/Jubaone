@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Category — JubaOne</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header class="site-header"><div class="wrap"><h1><a href="index.html" style="color:#fff;text-decoration:none">JubaOne</a></h1></div></header>
+<main class="wrap">
+  <h2 id="cat-title"></h2>
+  <div id="cat-list" class="article-list"></div>
+  <a href="index.html">← Back</a>
+</main>
+<script src="data/initial_data.json" type="application/json" id="seed-data"></script>
+<script>
+  const seedJson = JSON.parse(document.getElementById('seed-data').textContent);
+  const cat = new URLSearchParams(location.search).get('cat');
+  document.getElementById('cat-title').textContent = cat ? `Category: ${cat}` : 'Category';
+  const list = document.getElementById('cat-list');
+  seedJson.articles.filter(a => a.categories.includes(cat)).forEach(a => {
+    const el = document.createElement('div');
+    el.className='article';
+    el.innerHTML = `<h3><a href="article.html?slug=${encodeURIComponent(a.slug)}">${a.title}</a></h3><p>${a.excerpt}</p>`;
+    list.appendChild(el);
+  });
+</script>
+</body>
+</html>
