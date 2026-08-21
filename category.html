@@ -13,18 +13,27 @@
   <div id="cat-list" class="article-list"></div>
   <a href="index.html">← Back</a>
 </main>
-<script src="data/initial_data.json" type="application/json" id="seed-data"></script>
 <script>
-  const seedJson = JSON.parse(document.getElementById('seed-data').textContent);
-  const cat = new URLSearchParams(location.search).get('cat');
-  document.getElementById('cat-title').textContent = cat ? `Category: ${cat}` : 'Category';
-  const list = document.getElementById('cat-list');
-  seedJson.articles.filter(a => a.categories.includes(cat)).forEach(a => {
-    const el = document.createElement('div');
-    el.className='article';
-    el.innerHTML = `<h3><a href="article.html?slug=${encodeURIComponent(a.slug)}">${a.title}</a></h3><p>${a.excerpt}</p>`;
-    list.appendChild(el);
-  });
+  async function loadCategory(){
+    try{
+      const resp = await fetch('data/initial_data.json');
+      if(!resp.ok) throw new Error('Failed to load data');
+      const seed = await resp.json();
+      const cat = new URLSearchParams(location.search).get('cat');
+      document.getElementById('cat-title').textContent = cat ? `Category: ${cat}` : 'Category';
+      const list = document.getElementById('cat-list');
+      seed.articles.filter(a => (a.categories || []).includes(cat)).forEach(a => {
+        const el = document.createElement('div');
+        el.className='article';
+        el.innerHTML = `<h3><a href="article.html?slug=${encodeURIComponent(a.slug)}">${a.title}</a></h3><p>${a.excerpt}</p>`;
+        list.appendChild(el);
+      });
+    }catch(err){
+      console.error(err);
+      document.getElementById('cat-list').innerHTML = '<p style="color:#c00">Unable to load category. Use a web server to host files.</p>';
+    }
+  }
+  loadCategory();
 </script>
 </body>
 </html>

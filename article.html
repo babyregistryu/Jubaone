@@ -12,16 +12,25 @@
     <div id="article-container"></div>
     <a href="index.html">← Back to home</a>
   </main>
-  <script src="data/initial_data.json" type="application/json" id="seed-data"></script>
   <script>
-    const seedJson = JSON.parse(document.getElementById('seed-data').textContent);
-    const slug = new URLSearchParams(location.search).get('slug');
-    const a = seedJson.articles.find(x => x.slug === slug);
-    const container = document.getElementById('article-container');
-    if(!a){ container.innerHTML = '<p>Article not found.</p>'; }
-    else{
-      container.innerHTML = `<article><h2>${a.title}</h2><p class="meta">By ${a.author} • ${a.date}</p><div class="content">${a.content}</div></article>`;
+    async function loadArticle(){
+      try{
+        const resp = await fetch('data/initial_data.json');
+        if(!resp.ok) throw new Error('Failed to load data');
+        const seed = await resp.json();
+        const slug = new URLSearchParams(location.search).get('slug');
+        const a = seed.articles.find(x => x.slug === slug);
+        const container = document.getElementById('article-container');
+        if(!a){ container.innerHTML = '<p>Article not found.</p>'; }
+        else{
+          container.innerHTML = `<article><h2>${a.title}</h2><p class="meta">By ${a.author} • ${a.date}</p><div class="content">${a.content}</div></article>`;
+        }
+      }catch(err){
+        console.error(err);
+        document.getElementById('article-container').innerHTML = '<p style="color:#c00">Unable to load article. If you are opening files locally (file://) use a local HTTP server.</p>';
+      }
     }
+    loadArticle();
   </script>
 </body>
 </html>
